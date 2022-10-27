@@ -1,5 +1,5 @@
 import './AdminPage.scss';
-import Admin from '../../components/Admin/Admin';
+import Admin from '../../components/Admin';
 
 function AdminPage() {
   return (

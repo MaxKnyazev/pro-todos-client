@@ -1,5 +1,5 @@
 import './RegistrationPage.scss';
-import Registration from '../../components/Registration/Registration';
+import Registration from '../../components/Registration';
 
 function RegistrationPage() {
   return (

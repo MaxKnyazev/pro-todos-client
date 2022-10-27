@@ -1,6 +1,14 @@
 import './Login.scss';
+import { useDispatch } from 'react-redux';
+import { actionLoginAsync } from '../../store/storeThunk/actionCreaters';
 
 function Login() {
+  const dispatch = useDispatch();
+
+  const buttonSubmitHandler = (email, password) => {
+    dispatch(actionLoginAsync({email, password}));
+  }
+
   return (
     <div className='login'>
       <div className='login__wrapper'>
@@ -15,7 +23,7 @@ function Login() {
         </label>
       </div>
 
-      <button className='login__submit'>Submit</button>
+      <button className='login__submit' onClick={() => {buttonSubmitHandler('5@5.ru', '55555')}}>Submit</button>
     </div>
   );
 }

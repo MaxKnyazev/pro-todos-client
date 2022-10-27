@@ -1,9 +1,9 @@
 import './Header.scss';
+import { useSelector } from 'react-redux';
 
 function Header() {
-  let isLogin = true;
-  let username = 'Username123'
-  let isAdmin = true;
+  let { isAuth, user } = useSelector(state => state.userReducer);
+  let isAdmin = user.role === 'admin' ? true : false;
 
   return (
     <>
@@ -12,10 +12,10 @@ function Header() {
 
         <div className="header__profile profile">
           {
-            isLogin ? (
+            isAuth ? (
               <div className='profile'>
                 <div className='profile__username username'>
-                  <span className='username__span'>{username}</span>
+                  <span className='username__span'>{user.email}</span>
                   <div className='username__underline'></div>
                 </div>
                 <button className='profile__button'>Logout</button>
