@@ -1,0 +1,21 @@
+* {
+  border: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #423f3a;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.page {
+  width: 100%;
+  height: 76vh;
+  background-color: #fff6f1;
+}

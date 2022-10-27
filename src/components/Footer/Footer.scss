@@ -1,0 +1,17 @@
+.footer {
+  width: 100vw;
+  height: 10vh;
+  background-color: #595A52;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 90vh;
+
+  &__sign {
+    font-size: 20px;
+    color: #2d2e2a;
+  }
+}
