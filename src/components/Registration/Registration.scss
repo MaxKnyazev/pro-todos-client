@@ -40,4 +40,11 @@
       background-color: #c9bdb7;
     }
   }
+
+  &__error {
+    color: rgb(255, 91, 91);
+    font-size: 20px;
+    position: absolute;
+    top: 25vh;
+  }
 }

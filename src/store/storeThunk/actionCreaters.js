@@ -23,7 +23,9 @@ export const actionLoginAsync = ({ email, password }) => {
           password
         });
 
-        localStorage.setItem('token', response.data.accessToken);
+        console.log(response);
+
+        localStorage.setItem('token', response.data.user.accessToken);
 
         return {
           user: response.data.user,
@@ -50,7 +52,7 @@ export const actionLoginAsync = ({ email, password }) => {
   }
 }
 
-export const actionCurrentUserAsync = () => {
+export const actionConfirmUserAsync = () => {
   return async (dispatch) => {
     const refreshUser = async () => {
       try {
@@ -60,9 +62,9 @@ export const actionCurrentUserAsync = () => {
           }
         });
 
-        localStorage.setItem('token', response.data.accessToken);
+        localStorage.setItem('token', response.data.user.accessToken);
 
-        console.log('actionCurrentUserAsync— try —-----------------------------');
+        console.log('actionConfirmUserAsync— try —-----------------------------');
         console.log(response);
 
         return {
@@ -71,11 +73,11 @@ export const actionCurrentUserAsync = () => {
           isAuth: true,
         }
       } catch (error) {
-        console.log('actionCurrentUserAsync— catch — ERROR —-------------------');
+        console.log('actionConfirmUserAsync— catch — ERROR —-------------------');
         console.log(error);
         return {
           user: {},
-          error: error?.response?.data?.error,
+          error: null,
           isAuth: false,
         }
       }

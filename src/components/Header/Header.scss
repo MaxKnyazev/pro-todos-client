@@ -36,6 +36,10 @@
     background-color: #b8ae9e;
     color: #423f3a;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     transition: all 200ms linear;
 
     &:hover {

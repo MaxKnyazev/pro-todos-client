@@ -17,29 +17,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-
-
-
-
-
-
-// import { useSelector } from 'react-redux';
-// import { Navigate } from 'react-router-dom';
-// import Login from '../components/Login';
-// import './LoginPage.css';
-
-// const LoginPage = () => {
-// const { isAuth } = useSelector((state) => state.userState);
-// return (
-// <div className='container'>
-// {
-// isAuth
-// ? <Navigate to='/todos' replace={true} />
-// : <Login />
-// }
-// </div>
-// );
-// };
-
-// export default LoginPage;

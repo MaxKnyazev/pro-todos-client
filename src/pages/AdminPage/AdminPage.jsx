@@ -1,10 +1,20 @@
 import './AdminPage.scss';
 import Admin from '../../components/Admin';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 function AdminPage() {
+  let { isAuth, user } = useSelector(state => state.userReducer);
+  let isAdmin = user.role === 'admin' ? true : false;
+  console.log(isAuth && isAdmin);
+
   return (
     <section className='adminpage page'>
-      <Admin />
+    {
+      isAuth && isAdmin
+      ? <Admin />
+      : <Navigate to='/todos' replace={true} />
+    }
     </section>
   );
 }
