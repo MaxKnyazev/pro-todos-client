@@ -86,12 +86,12 @@ function Registration() {
 
         <label htmlFor='password'>
           <span className='registration__span'>Password:</span>
-          <input className='registration__input' id='password' type='text' value={password} onChange={passwordInputHandler}/>
+          <input className='registration__input' id='password' type='password' value={password} onChange={passwordInputHandler}/>
         </label>
 
         <label htmlFor='password'>
           <span className='registration__span'>Re-enter Password:</span>
-          <input className='registration__input' id='password' type='text' value={doublePassword} onChange={doublePasswordInputHandler}/>
+          <input className='registration__input' id='password' type='password' value={doublePassword} onChange={doublePasswordInputHandler}/>
         </label>
       </div>
 
