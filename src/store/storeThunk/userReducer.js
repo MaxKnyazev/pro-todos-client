@@ -6,6 +6,8 @@ const initialState = {
   isAuth: false,
 };
 
+
+// TODO: =========================== Заменить userReducer на authReducer
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
