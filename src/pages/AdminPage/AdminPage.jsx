@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 
 function AdminPage() {
   let { isAuth, user } = useSelector(state => state.userReducer);
-  let isAdmin = user.role === 'admin' ? true : false;
+  let isAdmin = user.role === 'admin';
   console.log(isAuth && isAdmin);
 
   return (

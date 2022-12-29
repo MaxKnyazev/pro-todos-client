@@ -1,4 +1,8 @@
-import { GET_ALL_USERS, EDIT_USER, DELETE_USER } from './actionTypes';
+import { 
+  GET_ALL_USERS, 
+  EDIT_USER_PENDING, EDIT_USER_SUCCESS, EDIT_USER_ERROR,
+  DELETE_USER_PENDING, DELETE_USER_SUCCESS, DELETE_USER_ERROR 
+} from './actionTypes';
 import { axiosInstance } from '../../utils/axiosInstance';
 
 export const actionGetAllUsers = ({ users, error }) => ({
@@ -33,41 +37,108 @@ export const actionGetAllUsersAsync = () => {
   }
 }
 
-export const actionDeleteUser = ({ id, error }) => ({
-  type: DELETE_USER,
+export const actionDeleteUserPending = () => ({
+  type: DELETE_USER_PENDING,
+});
+
+export const actionDeleteUserSuccess = ({ id }) => ({
+  type: DELETE_USER_SUCCESS,
   payload: {
-    id,
-    error,
+    id
   },
 });
 
-// TODO: Вариант рабочий, но костыль. Исправить!!!! 
-// TODO: Сделать три экшена: pending, successfully, error 
+export const actionDeleteUserError = ({ error }) => ({
+  type: DELETE_USER_ERROR,
+  payload: {
+    error
+  },
+});
+
 export const actionDeleteUserAsync = (id) => {
   return async (dispatch) => {
     const deleteUser = async () => {
       try {
-        const response = await axiosInstance.delete(`/0users/delete/${id}`); //TODO: Неверный путь (специально для ошибки)
-        // response.result.id
-        console.log(typeof response.data.result.id);
-        console.log(typeof id);
+        dispatch(actionDeleteUserPending());
+        const response = await axiosInstance.delete(`/users/delete/${id}`); //TODO: Неверный путь (специально для ошибки)
 
         if ((id === response.data.result.id) && !response.data.error) {
-          dispatch(actionDeleteUser({id, error: null}));
-          // return {
-          //   id,
-          //   error: null,
-          // }
+          dispatch(actionDeleteUserSuccess({id, error: null}));
         }
       } catch (error) {
-        return {
-          id,
-          error,
-        }
+        dispatch(actionDeleteUserError({error}));
       }
     }
 
     await deleteUser();
-    // dispatch(actionDeleteUser(await deleteUser()));
   }
 }
+
+
+
+export const actionEditUserPending = () => ({
+  type: EDIT_USER_PENDING,
+});
+
+export const actionEditUserSuccess = ({ id, role }) => ({
+  type: EDIT_USER_SUCCESS,
+  payload: {
+    id,
+    role
+  },
+});
+
+export const actionEditUserError = ({ error }) => ({
+  type: EDIT_USER_ERROR,
+  payload: {
+    error
+  },
+});
+
+export const actionEditUserAsync = (id, role) => {
+  return async (dispatch) => {
+    const editUser = async () => {
+      try {
+        dispatch(actionEditUserPending());
+        const response = await axiosInstance.put(`/users/edit/${id}`, { role }); //TODO: Неверный путь (специально для ошибки)
+
+        if ((role === response.data.editedUser.role) && !response.data.error) {
+          dispatch(actionEditUserSuccess({id, error: null, role}));
+        }
+      } catch (error) {
+        dispatch(actionEditUserError({error}));
+      }
+    }
+
+    await editUser();
+  }
+}
+
+
+
+
+
+
+
+// export const actionDeleteUserAsync = (id) => {
+//   return async (dispatch) => {
+//     const deleteUser = async () => {
+//       try {
+//         const response = await axiosInstance.delete(`/users/delete/${id}`); //TODO: Неверный путь (специально для ошибки)
+//         console.log(typeof response.data.result.id);
+//         console.log(typeof id);
+
+//         if ((id === response.data.result.id) && !response.data.error) {
+//           dispatch(actionDeleteUser({id, error: null}));
+//         }
+//       } catch (error) {
+//         return {
+//           id,
+//           error,
+//         }
+//       }
+//     }
+
+//     await deleteUser();
+//   }
+// }
